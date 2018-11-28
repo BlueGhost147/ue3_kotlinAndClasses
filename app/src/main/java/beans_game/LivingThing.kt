@@ -3,27 +3,27 @@ package beans_game
 import android.util.Log
 
 open class LivingThing(val name: String, var health: Int, var attackStrength: Int, var isAlive: Boolean) {
-    fun attack(attackee: LivingThing) {
+    open fun attack(target: LivingThing) {
 
         if (this.isAlive) {
 
-            Log.i("LivingThing", "Attacking ${attackee.name} with attackStrength: ${attackStrength}")
+            Log.i("GameLog", "Attacking ${target.name} with attackStrength: ${attackStrength}")
 
-            if (attackee.isAlive)
-                attackee.takeDamageFrom(this, attackStrength)
+            if (target.isAlive)
+                target.takeDamageFrom(this, attackStrength)
             else
-                Log.i("LivingThing", "But ${attackee.name} is already dead!")
+                Log.v("GameLog", "But ${target.name} is already dead!")
         }
         else
-            Log.i("LivingThing", "${this.name} can´t attack, it is already dead!")
+            Log.v("GameLog", "${this.name} can´t attack, it is already dead!")
     }
 
-    fun takeDamageFrom(attackee: LivingThing, damage: Int) {
-        Log.i("LivingThing", "${name} is taking ${attackee.attackStrength} damage from: ${attackee.name}")
-        attackee.health = attackee.health - damage
-        if (attackee.health <= 0) {
-            attackee.isAlive = false
-            Log.i("LivingThing", "${attackee.name} died!")
+    fun takeDamageFrom(attacker: LivingThing, damage: Int) {
+        Log.i("GameLog", "${name} is taking ${damage} damage from: ${attacker.name}")
+        this.health = this.health - damage
+        if (this.health <= 0) {
+            this.isAlive = false
+            Log.i("GameLog", "${this.name} died!")
         }
 
     }

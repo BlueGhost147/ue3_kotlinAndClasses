@@ -31,11 +31,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         val dragon1 = Dragon("Smaug",9001,15, false)
+        val dragon2 = Dragon("Shivana",100,15, true)
         val lion1 = Lion("Lion",100,3, true)
-        val player1 = Player("Kotlin Man",314,10, true,7,100)
+        val player1 = Player("Kotlin Man",314,10000, true,7,100)
 
         player1.attack(lion1)
         lion1.attack(player1)
         dragon1.attack(player1)
+
+        lion1.roar();
+        dragon1.breathFire()
+        dragon2.breathFire()
+
+        player1.attack(dragon2)
     }
 }
