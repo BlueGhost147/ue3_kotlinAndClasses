@@ -1,9 +1,6 @@
 package beans
 
-open class Shape()
+interface Shape
 {
-    open fun calculateArea() : Double
-    {
-        return -1.0
-    }
+     fun calculateArea() : Double
 }
